@@ -1,12 +1,11 @@
-# Amazon Linux 2 as the base image
-FROM amazonlinux:2 
+# specify a base image
+FROM centos:7 
 
 #description
 LABEL description="containerize apache webapp"
 
 LABEL maintainer="fabrice best devops engineer"
-
-# run yum update to update the system
+# run yum update
 RUN yum -y update 
 
 #install apache
@@ -16,7 +15,7 @@ RUN yum install -y httpd
 #copy index file from our local to inside the container
 COPY index.html /var/www/html/
 
-# open port 80 for HTTP traffic
+# open port 80
 EXPOSE 80
 
 # run httpd service when the container starts systemctl start httpd
